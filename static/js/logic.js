@@ -18,12 +18,12 @@ var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_we
 
 // Perform a GET request to the query URL
 function depth(x) {
-  return x>90 ? "#de2d26" :
-  x>70 ? "#377eb8":
-  x>50 ? "#4daf4a":
-  x>30 ? "#984ea3":
-  x>10 ? "#ff7f00":
-  "#ff7f00";
+  return x>90 ? "#9f1d18" :
+  x>70 ? "#e1423c":
+  x>50 ? "#de7a26":
+  x>30 ? "#dea826":
+  x>10 ? "#dec726":
+  "#99de26";
 }
 
 d3.json(queryUrl, function(data) {
@@ -36,8 +36,8 @@ d3.json(queryUrl, function(data) {
     pointToLayer: function (feature, latlng) {
       return L.circleMarker(latlng, {
         radius: feature.properties.mag *4,
-        //fillColor: depth(feature.geometry.coordinates[2]),
-        color: depth(feature.geometry.coordinates[2]),
+        fillColor: depth(feature.geometry.coordinates[2]),
+        color: "#040401",
         weight: 1,
         opacity: 1,
         fillOpacity: 0.8
