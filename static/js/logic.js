@@ -51,28 +51,30 @@ d3.json(queryUrl, function (data) {
   legend.onAdd = function (map) {
 
     var div = L.DomUtil.create('div', 'info legend');
-    mags = [0, 1, 2, 3, 4, 5],
+    grades = [0, 1, 2, 3, 4, 5],
       labels = [];
-   
-    for (var i = 0; i < mag.length; i++) {
+
+    for (var i = 0; i < grades.length; i++) {
 
       div.innerHTML +=
-        labels.push(
-          '<i style="background:' + getColor(mags[i]) + '"></i> ' +
-          (mags[i] ? mags[i] : '+'));
-
+        '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+        grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
     }
-
-    function getColor(depth) {
-      return depth > 5 ? "#9f1d18" :
-        depth > 4 ? "#e1423c" :
-          depth > 3 ? "#de7a26" :
-            depth > 2 ? "#dea826" :
-              depth > 1 ? "#dec726" :
-                "#99de26";
-      return div;
-    };
-    // Adding legend to the map
-    legend.addTo(myMap);
+    return div;
   };
+  // Adding legend to the map
+  legend.addTo(myMap);
+
 });
+
+function getColor(depth) {
+  return depth > 5 ? "#9f1d18" :
+    depth > 4 ? "#e1423c" :
+      depth > 3 ? "#de7a26" :
+        depth > 2 ? "#dea826" :
+          depth > 1 ? "#dec726" :
+            "#99de26";
+
+};
+// Adding legend to the map
+legend.addTo(myMap);
